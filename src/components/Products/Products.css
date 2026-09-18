@@ -1,0 +1,47 @@
+.products-container {
+  width: 100%;
+}
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  margin-bottom: 45px;
+}
+
+.products-eyebrow {
+  display: block;
+  margin-bottom: 10px;
+
+  color: #8b887f;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.products-header h2 {
+  margin: 0;
+
+  font-family: "Playfair Display", serif;
+  font-size: 44px;
+  font-weight: 600;
+}
+
+.product-count {
+  color: #85827b;
+  font-size: 13px;
+}
+
+@media (max-width: 576px) {
+  .products-header {
+    align-items: flex-start;
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  .products-header h2 {
+    font-size: 36px;
+  }
+}
