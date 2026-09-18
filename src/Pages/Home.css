@@ -1,0 +1,19 @@
+.home-page {
+  width: 100%;
+}
+
+.shop-section {
+  padding: 100px 0;
+}
+
+@media (max-width: 991px) {
+  .shop-section {
+    padding: 75px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .shop-section {
+    padding: 60px 0;
+  }
+}

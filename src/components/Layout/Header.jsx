@@ -1,5 +1,8 @@
 import { useContext } from "react";
+
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
+
+import { Link } from "react-router-dom";
 
 import { CartContext } from "../../context/CartContext";
 
@@ -12,7 +15,7 @@ function Header({ onCartClick }) {
     <header>
       <Navbar expand="lg" className="main-navbar">
         <Container>
-          <Navbar.Brand href="#" className="brand">
+          <Navbar.Brand as={Link} to="/" className="brand">
             The Generics
           </Navbar.Brand>
 
@@ -23,11 +26,15 @@ function Header({ onCartClick }) {
 
           <Navbar.Collapse id="main-navigation">
             <Nav className="mx-auto navigation-links">
-              <Nav.Link href="#">Home</Nav.Link>
+              <Nav.Link as={Link} to="/">
+                Home
+              </Nav.Link>
 
-              <Nav.Link href="#shop">Shop</Nav.Link>
+              <Nav.Link href="/#shop">Shop</Nav.Link>
 
-              <Nav.Link href="#about">About</Nav.Link>
+              <Nav.Link as={Link} to="/about">
+                About
+              </Nav.Link>
             </Nav>
 
             <Button className="cart-button" onClick={onCartClick}>
