@@ -35,6 +35,10 @@ function Header({ onCartClick }) {
               <Nav.Link as={Link} to="/about">
                 About
               </Nav.Link>
+
+              <Nav.Link as={Link} to="/contact">
+                Contact
+              </Nav.Link>
             </Nav>
 
             <Button className="cart-button" onClick={onCartClick}>
