@@ -30,7 +30,9 @@ function Header({ onCartClick }) {
                 Home
               </Nav.Link>
 
-              <Nav.Link href="/#shop">Shop</Nav.Link>
+              <Nav.Link as={Link} to="/products">
+                Shop
+              </Nav.Link>
 
               <Nav.Link as={Link} to="/about">
                 About

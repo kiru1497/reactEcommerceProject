@@ -12,6 +12,7 @@
 
 .products-eyebrow {
   display: block;
+
   margin-bottom: 10px;
 
   color: #8b887f;
@@ -24,13 +25,17 @@
 .products-header h2 {
   margin: 0;
 
+  color: #171717;
+
   font-family: "Playfair Display", serif;
   font-size: 44px;
   font-weight: 600;
+  line-height: 1.1;
 }
 
 .product-count {
   color: #85827b;
+
   font-size: 13px;
 }
 
@@ -38,6 +43,7 @@
   .products-header {
     align-items: flex-start;
     gap: 20px;
+
     flex-direction: column;
   }
 

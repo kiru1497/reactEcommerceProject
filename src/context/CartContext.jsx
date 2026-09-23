@@ -12,7 +12,8 @@ export const CartContext = createContext({
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
-  function addToCart(product) {
+  // ADD TO CART
+  function addToCart(product, quantity = 1) {
     setCart((previousCart) => {
       const existingItem = previousCart.find((item) => item.id === product.id);
 
@@ -21,7 +22,7 @@ export function CartProvider({ children }) {
           if (item.id === product.id) {
             return {
               ...item,
-              quantity: item.quantity + 1,
+              quantity: item.quantity + quantity,
             };
           }
 
@@ -33,18 +34,20 @@ export function CartProvider({ children }) {
         ...previousCart,
         {
           ...product,
-          quantity: 1,
+          quantity,
         },
       ];
     });
   }
 
+  // REMOVE ENTIRE PRODUCT FROM CART
   function removeFromCart(productId) {
     setCart((previousCart) =>
       previousCart.filter((item) => item.id !== productId),
     );
   }
 
+  // INCREASE QUANTITY BY 1
   function increaseQuantity(productId) {
     setCart((previousCart) =>
       previousCart.map((item) => {
@@ -60,6 +63,7 @@ export function CartProvider({ children }) {
     );
   }
 
+  // DECREASE QUANTITY BY 1
   function decreaseQuantity(productId) {
     setCart((previousCart) =>
       previousCart
@@ -77,10 +81,12 @@ export function CartProvider({ children }) {
     );
   }
 
+  // TOTAL NUMBER OF PRODUCTS IN CART
   const totalQuantity = useMemo(() => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   }, [cart]);
 
+  // CONTEXT VALUE
   const contextValue = useMemo(() => {
     return {
       cart,

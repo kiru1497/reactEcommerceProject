@@ -1,5 +1,8 @@
 import { useContext } from "react";
+
 import { Button } from "react-bootstrap";
+
+import { Link } from "react-router-dom";
 
 import { CartContext } from "../../context/CartContext";
 
@@ -10,19 +13,25 @@ function ProductCard({ product }) {
 
   return (
     <article className="product-card">
-      <div className="product-image-wrapper">
-        <img
-          src={product.image}
-          alt={product.title}
-          className="product-image"
-        />
+      <Link to={`/product/${product.id}`} className="product-image-link">
+        <div className="product-image-wrapper">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="product-image"
+          />
 
-        <div className="product-category">{product.category}</div>
-      </div>
+          <div className="product-category">{product.category}</div>
+
+          <div className="view-product">View product →</div>
+        </div>
+      </Link>
 
       <div className="product-information">
         <div className="product-top">
-          <h3>{product.title}</h3>
+          <Link to={`/product/${product.id}`} className="product-title-link">
+            <h3>{product.title}</h3>
+          </Link>
 
           <span className="product-price">${product.price.toFixed(2)}</span>
         </div>

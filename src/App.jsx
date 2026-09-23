@@ -9,6 +9,8 @@ import Cart from "./components/UI/Cart";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
+import ProductsPage from "./Pages/ProductsPage";
+import ProductDetails from "./Pages/ProductDetails";
 
 import { CartProvider } from "./context/CartContext";
 
@@ -25,6 +27,10 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+
+            <Route path="/products" element={<ProductsPage />} />
+
+            <Route path="/product/:productId" element={<ProductDetails />} />
 
             <Route path="/about" element={<About />} />
 
