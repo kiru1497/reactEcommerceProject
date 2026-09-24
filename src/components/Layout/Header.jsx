@@ -2,20 +2,32 @@ import { useContext } from "react";
 
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { CartContext } from "../../context/CartContext";
+
+import { AuthContext } from "../../context/AuthContext";
 
 import "./Header.css";
 
 function Header({ onCartClick }) {
   const { totalQuantity } = useContext(CartContext);
 
+  const { logout } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+
+    navigate("/login");
+  }
+
   return (
     <header>
       <Navbar expand="lg" className="main-navbar">
         <Container>
-          <Navbar.Brand as={Link} to="/" className="brand">
+          <Navbar.Brand as={Link} to="/home" className="brand">
             The Generics
           </Navbar.Brand>
 
@@ -26,7 +38,7 @@ function Header({ onCartClick }) {
 
           <Navbar.Collapse id="main-navigation">
             <Nav className="mx-auto navigation-links">
-              <Nav.Link as={Link} to="/">
+              <Nav.Link as={Link} to="/home">
                 Home
               </Nav.Link>
 
@@ -43,11 +55,17 @@ function Header({ onCartClick }) {
               </Nav.Link>
             </Nav>
 
-            <Button className="cart-button" onClick={onCartClick}>
-              <span>Cart</span>
+            <div className="header-actions">
+              <Button className="cart-button" onClick={onCartClick}>
+                <span>Cart</span>
 
-              <span className="cart-count">{totalQuantity}</span>
-            </Button>
+                <span className="cart-count">{totalQuantity}</span>
+              </Button>
+
+              <Button className="logout-button" onClick={handleLogout}>
+                Logout
+              </Button>
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

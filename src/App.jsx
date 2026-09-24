@@ -1,10 +1,15 @@
 import { useState } from "react";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import Cart from "./components/UI/Cart";
+
+import ProtectedRoute from "./components/Auth/ProtectedRoute";
+
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
 
 import Home from "./Pages/Home";
 import About from "./Pages/About";
@@ -13,6 +18,7 @@ import ProductsPage from "./Pages/ProductsPage";
 import ProductDetails from "./Pages/ProductDetails";
 
 import { CartProvider } from "./context/CartContext";
+import { AuthProvider } from "./context/AuthContext";
 
 import "./App.css";
 
@@ -20,29 +26,108 @@ function App() {
   const [showCart, setShowCart] = useState(false);
 
   return (
-    <CartProvider>
-      <div className="app">
-        <Header onCartClick={() => setShowCart(true)} />
-
-        <main>
+    <AuthProvider>
+      <CartProvider>
+        <div className="app">
           <Routes>
-            <Route path="/" element={<Home />} />
+            {/* Authentication pages */}
 
-            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/login" element={<Login />} />
 
-            <Route path="/product/:productId" element={<ProductDetails />} />
+            <Route path="/signup" element={<Signup />} />
 
-            <Route path="/about" element={<About />} />
+            {/* Protected application */}
 
-            <Route path="/contact" element={<Contact />} />
+            <Route element={<ProtectedRoute />}>
+              <Route
+                path="/home"
+                element={
+                  <>
+                    <Header onCartClick={() => setShowCart(true)} />
+
+                    <main>
+                      <Home />
+                    </main>
+
+                    <Footer />
+
+                    <Cart show={showCart} onClose={() => setShowCart(false)} />
+                  </>
+                }
+              />
+
+              <Route
+                path="/products"
+                element={
+                  <>
+                    <Header onCartClick={() => setShowCart(true)} />
+
+                    <main>
+                      <ProductsPage />
+                    </main>
+
+                    <Footer />
+
+                    <Cart show={showCart} onClose={() => setShowCart(false)} />
+                  </>
+                }
+              />
+
+              <Route
+                path="/product/:productId"
+                element={
+                  <>
+                    <Header onCartClick={() => setShowCart(true)} />
+
+                    <main>
+                      <ProductDetails />
+                    </main>
+
+                    <Footer />
+
+                    <Cart show={showCart} onClose={() => setShowCart(false)} />
+                  </>
+                }
+              />
+
+              <Route
+                path="/about"
+                element={
+                  <>
+                    <Header onCartClick={() => setShowCart(true)} />
+
+                    <main>
+                      <About />
+                    </main>
+
+                    <Footer />
+                  </>
+                }
+              />
+
+              <Route
+                path="/contact"
+                element={
+                  <>
+                    <Header onCartClick={() => setShowCart(true)} />
+
+                    <main>
+                      <Contact />
+                    </main>
+
+                    <Footer />
+                  </>
+                }
+              />
+            </Route>
+
+            {/* Initial page */}
+
+            <Route path="/" element={<Navigate to="/login" replace />} />
           </Routes>
-        </main>
-
-        <Footer />
-
-        <Cart show={showCart} onClose={() => setShowCart(false)} />
-      </div>
-    </CartProvider>
+        </div>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 

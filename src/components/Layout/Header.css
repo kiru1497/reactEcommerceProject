@@ -107,3 +107,32 @@
     margin-bottom: 10px;
   }
 }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logout-button {
+  border: 1px solid #171717 !important;
+  border-radius: 100px !important;
+  background: transparent !important;
+  color: #171717 !important;
+  padding: 10px 17px !important;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.logout-button:hover {
+  background: #171717 !important;
+  color: white !important;
+}
+
+@media (max-width: 991px) {
+  .header-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+}

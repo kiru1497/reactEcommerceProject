@@ -1,0 +1,14 @@
+@import "./Login.css";
+
+.name-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+@media (max-width: 576px) {
+  .name-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
